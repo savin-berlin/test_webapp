@@ -1,0 +1,19 @@
+<!-- team_manager/templates/contacts_overview.html -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Team_manager: Contacts Overview</title>
+    </head>
+    <body>
+        <h1>Contacts Overview!</h1>
+        <h2> All exist contacts:</h1>
+        	{% load django_tables2 %}
+			{% render_table table_data %}
+
+		<br>
+       <a href="/contacts_overview/">Contacts Overview</a>
+       <a href="/about/">About Me</a>
+       <a href="/">Go back home</a>
+    </body>
+</html>
