@@ -16,8 +16,11 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from django.urls import path, include
+from team_manager.admin import user_admin_site
+#from team_manager.admin import user_admin_site
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^', include('team_manager.urls')),
+    url('useradmin',user_admin_site.urls),
 ]

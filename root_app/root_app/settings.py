@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+from django.contrib.messages import constants as message_constants
+MESSAGE_LEVEL = message_constants.DEBUG
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -28,6 +30,13 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
+TEMPLATE_CONTEXT_PROCESSORS = [
+            'django.core.context_processors.request',
+            'session_csrf.context_processor',
+
+            ]
+
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -39,7 +48,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     "team_manager",
     'django_tables2',
+    "crispy_forms",
 ]
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -49,6 +61,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'session_csrf.CsrfMiddleware',
 ]
 
 ROOT_URLCONF = 'root_app.urls'
@@ -73,6 +86,7 @@ DJANGO_TABLES2_TEMPLATE = "django_tables2/bootstrap4.html"
 
 WSGI_APPLICATION = 'root_app.wsgi.application'
 
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
@@ -122,3 +136,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_DIR = os.path.join(BASE_DIR, "static")
+#STATIC_ROOT = os.path.join(BASE_DIR, "static")
+STATICFILES_DIRS = [STATIC_DIR]
+#print(BASE_DIR)

@@ -1,0 +1,32 @@
+<!-- team_manager/templates/contact_create.html -->
+
+{% extends "base.html" %}
+
+{% block title %} Contacts Creation {% endblock %}
+
+
+
+
+{% block content %}
+
+
+        <h1>Edit current Contact</h1>
+
+
+
+        <form method='POST'> {% csrf_token %}
+	       	{{ form.as_p }}
+	        <input type="submit" class="btn btn-success" name="Send" value="Save Changes"/>
+	        <input class="btn btn-default btn-danger" type="submit" value="Delete" formaction="{% url 'deleted_view' contact_id=contact_id %}"  onclick="return confirm('Are you sure you want to delete this?')"/>
+    		
+	        
+			  
+
+
+
+
+		</form>
+
+
+
+{% endblock %}

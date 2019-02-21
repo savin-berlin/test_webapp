@@ -1,0 +1,39 @@
+<!-- team_manager/templates/contact_create.html -->
+
+{% extends "base.html" %}
+
+{% block title %} Contact Details {% endblock %}
+
+
+
+
+{% block content %}
+        <h1>Contact Details</h1>
+
+        <br>
+
+			{% for instance in obj %}
+			<h4>ID: {{ instance.id }}</h4>
+			<ul>
+			    {% for key, value in instance.items %}
+			    	{% if key != "id" %}
+			        <li><b>{{ key }}:</b>  {{ value }}</li>
+			        {% endif %}
+			    {% endfor %}
+
+				<form method='GET'> {% csrf_token %}
+			       	{{ form.as_p }}
+			        <input class="btn btn-default btn-danger" type="submit" value="Edit" formaction="{% url 'edit_contact' contact_id=contact_id %}" />
+			        
+				</form>
+
+			</ul>
+			{% endfor %}
+
+
+
+        
+
+
+
+{% endblock %}

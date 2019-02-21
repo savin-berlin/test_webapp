@@ -1,19 +1,18 @@
 <!-- team_manager/templates/contacts_overview.html -->
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title>Team_manager: Contacts Overview</title>
-    </head>
-    <body>
-        <h1>Contacts Overview!</h1>
-        <h2> All exist contacts:</h1>
+
+{% extends "base.html" %}
+
+{% block title %} Contacts Overview {% endblock %}
+
+{% block content %}
+
+        <h1 align="center">Contacts Overview!</h1>
+        <a href="{% url 'create_contact'  %}" title="Create New Contact" style="float: right;"><img src="/static/icons/insert.png"  height="30px", width="30px" alt="info"></a>
+        
+        <br>
+        <form action="" method="post">{% csrf_token %}
         	{% load django_tables2 %}
 			{% render_table table_data %}
+		</form>
+{% endblock %}
 
-		<br>
-       <a href="/contacts_overview/">Contacts Overview</a>
-       <a href="/about/">About Me</a>
-       <a href="/">Go back home</a>
-    </body>
-</html>

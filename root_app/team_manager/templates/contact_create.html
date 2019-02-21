@@ -1,0 +1,19 @@
+<!-- team_manager/templates/contact_create.html -->
+
+{% extends "base.html" %}
+
+{% block title %} Contacts Creation {% endblock %}
+
+
+
+
+{% block content %}
+
+        <h1>Create new Contact</h1>
+        <br>
+        <form method='POST'> {% csrf_token %}
+	        	{{ form.as_p }}
+	        <input type="submit" class="btn btn-success" onclick="return confirm('Are you sure you want to create this?')" name="Save"/>
+
+		</form>
+{% endblock %}
