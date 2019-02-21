@@ -218,7 +218,7 @@ goes to the directory, where you want to locate current package (for example:)
     $ cd  ~/Desktop
     $ mkdir django_test
     $ cd django_test
-    $ virtualenv env
+    $ virtualenv -p /usr/local/bin/python3 env
     $ git clone https://github.com/savin-berlin/test_webapp.git
     $ . env/bin/activate
     $ pip install -e .
