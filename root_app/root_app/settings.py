@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     "team_manager",
     'django_tables2',
     "crispy_forms",
+    "rest_framework",
 ]
 
 
@@ -98,6 +99,12 @@ DATABASES = {
     }
 }
 
+
+REST_FRAMEWORK = {
+    # When you enable API versioning, the request.version attribute will contain a string
+    # that corresponds to the version requested in the incoming client request.
+    'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.URLPathVersioning',
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators

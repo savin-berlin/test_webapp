@@ -11,7 +11,8 @@ setup(name='test_webapp',
       #packages=find_packages('zas_rep_tools/'),
       packages=['root_app'],
       install_requires=[ "django","nose","django-tables2", "django-crispy-forms",
-                        "django-crequest", "django-session-csrf", "blessings"],
+                        "django-crequest", "django-session-csrf", "blessings",
+                        "django-fake-model","djangorestframework", "validate_email"],
       include_package_data=True,    # include everything in source control
       zip_safe=False,
       test_suite='nose.collector', # test by installationls

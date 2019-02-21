@@ -15,12 +15,15 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include,re_path
 from team_manager.admin import user_admin_site
 #from team_manager.admin import user_admin_site
+#from team_manager.views import RESTAPI_ListContactsView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^', include('team_manager.urls')),
     url('useradmin',user_admin_site.urls),
+    #re_path('contacts_api/(?P<version>(v1|v2))/', RESTAPI_ListContactsView.as_view())
+
 ]

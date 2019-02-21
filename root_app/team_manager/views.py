@@ -8,14 +8,147 @@ from team_manager.helpers.debugger import p
 from django_tables2 import RequestConfig
 from django.contrib import messages
 from django.core import serializers
-
+from rest_framework.views import status
 from .forms import ContactForm,RawContactForm
-
+from .serializers import ContactsSerializer
 from .models import Contact
 from .tables import ContactTable
 import django 
+from rest_framework import generics
+from rest_framework.response import Response
+from rest_framework import permissions
+from .decorators import validate_request_contact_data
+
+######### REST API VIEWS ############
+
+#class RESTAPI_ListContactsView(generics.ListAPIView):
+#    """
+#    Provides a get method handler.
+#    """
+#    queryset = Contact.objects.all()
+#    serializer_class = ContactsSerializer
 
 
+class RESTAPI_ListCreateContactView(generics.ListCreateAPIView):
+    """
+    GET rest_api/contacts/
+    POST rest_api/contacts/
+    """
+    queryset = Contact.objects.all()
+    serializer_class = ContactsSerializer
+    #permission_classes = (permissions.IsAuthenticated,)
+
+    @validate_request_contact_data
+    def post(self, request, *args, **kwargs):
+        #print(request.data, "!!!!")
+        #print(request.data["id"], "!!!!")
+        try:
+            contact_id = request.data["id"]
+
+        except:
+            contact_id = None
+
+        a_contact = Contact.objects.create(
+            id=contact_id,
+            first_name=request.data["first_name"],
+            second_name=request.data["second_name"],
+            email=request.data["email"],
+        )
+        return Response(
+            data=ContactsSerializer(a_contact).data,
+            status=status.HTTP_201_CREATED
+        )
+
+
+
+# class RESTAPI_ContactDetailView(generics.RetrieveUpdateDestroyAPIView):
+#     """
+#     GET rest_api/contacts/:id/
+#     PUT rest_api/contacts/:id/
+#     DELETE rest_api/contacts/:id/
+#     """
+#     queryset = Contact.objects.all()
+#     serializer_class = ContactsSerializer
+
+
+#     def get(self, request, *args, **kwargs):
+#         #
+#         try:
+#             a_contact = self.queryset.get(pk=kwargs["pk"])
+#             #obj = get_object_or_404(Contact, id=a_contact.id)
+#             #p(a_contact.id)
+
+#             return Response(ContactsSerializer(a_contact).data)
+#         except Contact.DoesNotExist:
+#             return Response(
+#                 data={
+#                     "message": "Contact with id: {} does not exist".format(kwargs["pk"])
+#                 },
+#                 status=status.HTTP_404_NOT_FOUND
+#             )
+
+
+
+
+class RESTAPI_ContactDetailView(generics.RetrieveUpdateDestroyAPIView):
+    """
+    GET rest_api/contacts/:id/
+    PUT rest_api/contacts/:id/
+    DELETE rest_api/contacts/:id/
+    """
+    queryset = Contact.objects.all()
+    serializer_class = ContactsSerializer
+
+    def get(self, request, *args, **kwargs):
+        #
+        try:
+            a_contact = self.queryset.get(pk=kwargs["pk"])
+            #obj = get_object_or_404(Contact, id=a_contact.id)
+            #p(a_contact.id)
+
+            return Response(ContactsSerializer(a_contact).data)
+        except Contact.DoesNotExist:
+            return Response(
+                data={
+                    "message": "Contact with id: {} does not exist".format(kwargs["pk"])
+                },
+                status=status.HTTP_404_NOT_FOUND
+            )
+
+
+    @validate_request_contact_data
+    def put(self, request, *args, **kwargs):
+        try:
+            a_contact = self.queryset.get(pk=kwargs["pk"])
+            serializer = ContactsSerializer()
+            updated_contact = serializer.update(a_contact, request.data)
+            return Response(ContactsSerializer(updated_contact).data)
+        except Contact.DoesNotExist:
+            return Response(
+                data={
+                    "message": "Contact with id: {} does not exist".format(kwargs["pk"])
+                },
+                status=status.HTTP_404_NOT_FOUND
+            )
+
+    def delete(self, request, *args, **kwargs):
+        try:
+            a_contact = self.queryset.get(pk=kwargs["pk"])
+            a_contact.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        except Contact.DoesNotExist:
+            return Response(
+                data={
+                    "message": "Contact with id: {} does not exist".format(kwargs["pk"])
+                },
+                status=status.HTTP_404_NOT_FOUND
+            )
+
+
+
+
+
+########## Web Platform VIEWS ###########
 
 def contact_create_view(request):
     form = ContactForm(request.POST or None)

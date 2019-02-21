@@ -33,7 +33,10 @@ Current Tool was developed as part of the Djangos learning process. Current Pack
 
 ### UNIT-Tests (ausgewählte Bsp.):
 	für Detailseiten der Webseite
-	für das Schreiben in REST-Schnittstelle Technologie:
+	für das Schreiben in REST-Schnittstelle
+
+
+### Technologie:
         Multitier Architektur
         Die Datenbank ist frei wählbar
         ein Teil der Umsetzung soll pythonbasiert erfolgen
@@ -68,9 +71,12 @@ ___
 
 
 3. [Tutorials](#tutorials)
+
    -  Web Platform
    -  REST API
    -  Unit Tests
+
+
 
 4. [Demarcation](#demarcation) 
 
@@ -278,11 +284,31 @@ superuser credentials:
 
 ### Web Platform
 
+After running the Server open your browser and open the following WebSite:  http://127.0.0.1:8000/contacts/
+
 
 ### REST API
 
+Link: http://127.0.0.1:8000/rest_api/contacts
+
+	GET POST Contacts
+
+		GET /rest_api/contacts/
+		POST  /rest_api/contacts/
+
+	GET PUT DELETE Contact 
+
+		GET rest_api/contacts/:id/
+		PUT rest_api/contacts/:id/
+		DELETE rest_api/contacts/:id/
+
+
 
 ### Unit Tests
+
+		python manage.py test
+
+
 
 
 
@@ -313,5 +339,8 @@ superuser credentials:
 2. Extern DataBase (SQLite)
 	Please ignore current path and all with them connected methods and functions 
 	"root_app/team_manager/db". This was done just for learning goals and currently not in the active deployment. 
+
+3. Logging 
+	Wasn't implemented (if it is an important point, let me know and i will do it)
 	
 
