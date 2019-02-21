@@ -242,11 +242,9 @@ superuser credentials:
 	Username: admin
 	PW: qohpUp-1wibqe-dukjir
 
- Admin Site: http://127.0.0.1:8000/admin/
-
- Main Page: http://127.0.0.1:8000/
-
- Contacts Overview: http://127.0.0.1:8000/contacts/
+ - Admin Site: http://127.0.0.1:8000/admin/
+ - Main Page: http://127.0.0.1:8000/
+ - Contacts Overview: http://127.0.0.1:8000/contacts/
 
 
 ##### 3. REST API
