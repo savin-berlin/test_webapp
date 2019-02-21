@@ -290,7 +290,7 @@ Link: http://127.0.0.1:8000/rest_api/contacts
 		GET /rest_api/contacts/
 		POST  /rest_api/contacts/
 
-	GET PUT DELETE Contact 
+	GET PUT DELETE PATCH Contact 
 
 		GET rest_api/contacts/:id/
 		PUT rest_api/contacts/:id/
