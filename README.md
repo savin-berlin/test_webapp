@@ -221,6 +221,7 @@ goes to the directory, where you want to locate current package (for example:)
     $ virtualenv -p /usr/local/bin/python3 env
     $ git clone https://github.com/savin-berlin/test_webapp.git
     $ . env/bin/activate
+    $ cd test_webapp/
     $ pip install -e .
 
 
@@ -228,7 +229,7 @@ goes to the directory, where you want to locate current package (for example:)
 
 goes to the directory, where "manage.py" is located
 
-	$ cd test_webapp/root_app
+	$ cd root_app
 
 run Server
 

@@ -10,7 +10,8 @@ setup(name='test_webapp',
       license='MIT',
       #packages=find_packages('zas_rep_tools/'),
       packages=['root_app'],
-      install_requires=[ "django","nose","django-tables2", "django-crispy-forms", "django-crequest", "django-session-csrf"],
+      install_requires=[ "django","nose","django-tables2", "django-crispy-forms",
+                        "django-crequest", "django-session-csrf", "blessings"],
       include_package_data=True,    # include everything in source control
       zip_safe=False,
       test_suite='nose.collector', # test by installationls
