@@ -254,12 +254,6 @@ superuser credentials:
  - Contacts Overview: http://127.0.0.1:8000/contacts/
 
 
-##### 3. REST API
-
-
-###### 4. UNIT-Tester
-
-
 
 
 
@@ -306,7 +300,7 @@ Link: http://127.0.0.1:8000/rest_api/contacts
 
 ### Unit Tests
 
-		python manage.py test
+		$ python manage.py test
 
 
 
